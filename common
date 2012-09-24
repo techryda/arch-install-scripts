@@ -125,3 +125,11 @@ fstype_is_pseudofs() {
   in_array "$1" "${pseudofs_types[@]}"
 }
 
+mkdirs_w_perms() {
+  #Creates array of folders in $basedir w/ specified permissions
+  basedir=${1}
+	newdirs=${2}
+	for d in ${newdirs[*]}; do
+		[ ! -d ${basedir}/${d} ] && mkdir -m ${3:-0755} -p ${basedir}/${d};
+	done
+}
